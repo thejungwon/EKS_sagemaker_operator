@@ -74,5 +74,6 @@ kubectl get trainingjob
 
 
 ## References
+https://aws.amazon.com/ko/blogs/machine-learning/introducing-amazon-sagemaker-operators-for-kubernetes/
 https://eksworkshop.com/030_eksctl/launcheks/
 https://sagemaker.readthedocs.io/en/stable/amazon_sagemaker_operators_for_kubernetes.html
