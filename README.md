@@ -34,21 +34,7 @@ export AWS_REGION="<your region>"
 
 ```
 eksctl create cluster --name ${CLUSTER_NAME} --version 1.14 --region ${AWS_REGION} --fargate
-#eksctl create cluster --name=${CLUSTER_NAME} --nodes=3 --managed --alb-ingress-access --region=${AWS_REGION}
 ```
-
-
-```
-kubectl get nodes 
-```
-
-
-```
-STACK_NAME=$(eksctl get nodegroup --cluster $CLUSTER_NAME -o json | jq -r '.[].StackName')
-ROLE_NAME=$(aws cloudformation describe-stack-resources --stack-name $STACK_NAME | jq -r '.StackResources[] | select(.ResourceType=="AWS::IAM::Role") | .PhysicalResourceId')
-echo "export ROLE_NAME=${ROLE_NAME}" | tee -a ~/.bash_profile
-```
-
 
 
 
@@ -62,10 +48,10 @@ aws eks describe-cluster --name ${CLUSTER_NAME} --region ${AWS_REGION} \
     --query cluster.identity.oidc.issuer --output text
 ```
 ```
-aws iam create-role --role-name ${ROLE_NAME} --assume-role-policy-document file://trust.json --output=text
+aws iam create-role --role-name <rolename> --assume-role-policy-document file://trust.json --output=text
 ```
 ```
-aws iam attach-role-policy --role-name ${ROLE_NAME}  --policy-arn arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
+aws iam attach-role-policy --role-name <rolename>  --policy-arn arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
 ```
 ```
 kubectl apply -f installer.yaml
