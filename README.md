@@ -33,7 +33,8 @@ export AWS_REGION="<your region>"
 
 
 ```
-eksctl create cluster --name=${CLUSTER_NAME} --nodes=3 --managed --alb-ingress-access --region=${AWS_REGION}
+eksctl create cluster --name ${CLUSTER_NAME} --version 1.14 --region ${AWS_REGION} --fargate
+#eksctl create cluster --name=${CLUSTER_NAME} --nodes=3 --managed --alb-ingress-access --region=${AWS_REGION}
 ```
 
 
